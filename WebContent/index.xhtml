@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Anasayfa</title>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputScript library="js" name="jquery-2.1.1.min.js"  />
+	<h:outputScript library="js" name="adminmenu.js" />
+</h:head> 
+<body>
+<div class="navbar">
+	<div class="logo" >
+		<p>Cumhuriyet Üniversitesi</p>
+	</div>
+	<div class="menu">
+		<a href="index.jsf">Anasayfa</a>
+		<a href="#!">Ders Programı</a>
+		<a href="#!">Sınav Programı</a>
+		<a href="#{loginBean.logoutControl()}">Çıkış</a>
+		<a href="">Admin</a>
+	</div>
+</div> 
+<h:form class="adminmenu">
+	<p:menu>
+		<p:submenu label="Admin Panel">
+			<p:menuitem value="Fakülte Ekle" action="faculty?faces-redirect=true"/>
+			<p:menuitem value="Bölüm Ekle" action="section?faces-redirect=true"/>
+			<p:menuitem value="Ders Ekle" action="course?faces-redirect=true"/>
+			<p:menuitem value="Kullanıcı Ekle" action="user?faces-redirect=true"/>
+		</p:submenu>
+	</p:menu>
+</h:form>
+</body> 
+</html>

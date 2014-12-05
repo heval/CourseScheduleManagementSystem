@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Fakülte İşlemleri</title>
+	<h:outputStylesheet library="css" name="form.css"/>
+</h:head> 
+<body>
+<ui:insert>
+	<ui:include src="/index.xhtml" />
+</ui:insert>
+<h:form id="form">
+ <p:growl id="message" showDetail="true" life="2000"/> 
+ 	<p:panel header="Fakülte Ekle">    
+ 		<h:outputText value="Fakülte No  : " />    
+ 		<h:inputText  value="#{facultyBean.faculty.facultyNo}" style="position:relative; left:4px;" required="true" requiredMessage="Lütfen Fakülte Numarasını Giriniz"/><br/><br/>    
+  		<h:outputText value="Fakülte Adı : " />  
+  		<h:inputText  value="#{facultyBean.faculty.facultyName}" required="true" requiredMessage="Lütfen Fakülte Adını Giriniz"/><br/><br/>
+   		<p:commandButton value="Ekle" style="position:relative; left:220px;" icon="ui-icon-disk" 
+   		actionListener="#{facultyBean.setFacultyData()}" update="message :list:panel"/>
+    </p:panel> 
+</h:form>
+<h:form id="list">
+<p:panel id="panel" header="Fakülte Listesi">   
+	 <p:dataTable id="faculties" value="#{facultyBean.facultyDataList}" sortBy="#{c.facultyNo}" var="c" paginator="true" rows="10">
+	 <p:column width="20">
+		<p:selectBooleanCheckbox/>
+	 </p:column>
+	 <p:column width="100">     
+		 <f:facet name="header">
+ 			<h:outputText value="Fakülte No" />     
+ 		 </f:facet> 		     
+ 		<h:outputText value="#{c.facultyNo}" rendered="#{not update.updatable}"/>
+ 		<h:inputText value="#{c.facultyNo}" rendered="#{update.updatable}" style="width:100px;"/>    
+ 	 </p:column>    
+	 <p:column>     
+ 		<f:facet name="header">    
+   			<h:outputText value="Fakülte Adı" />  
+      	</f:facet>   
+      	<h:outputText value="#{c.facultyName}" rendered="#{not update.updatable}"/>
+      	<h:inputText value="#{c.facultyName}" rendered="#{update.updatable}"/>    
+     </p:column> 
+     </p:dataTable>
+     <p:contextMenu>
+     	<p:menuitem value="Save" actionListener="#{facultyBean.facultyUpdate()}" update=":list:panel" icon="ui-icon-disk"/>
+        <p:menuitem value="Update" actionListener="#{update.activeToUpdatable()}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
+        <p:menuitem value="Delete" icon="ui-icon-close"/>
+        <p:menuitem value="Homepage" url="index.jsf" icon="ui-icon-extlink"/>
+     </p:contextMenu>  
+</p:panel> 
+</h:form>
+</body> 
+</html>

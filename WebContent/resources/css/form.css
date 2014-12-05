@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+#form{
+	position:fixed;
+	left:50px;
+	bottom:100px;
+	top:125px;
+	width:400px;
+	height: 206px;
+}
+#list{
+	position:fixed;
+	left:530px;
+	top:125px;
+	width:550px;
+	height: auto;
+}
+input{
+	border-radius:3px;
+	padding:2px;
+}

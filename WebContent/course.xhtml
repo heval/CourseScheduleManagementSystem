@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Ders İşlemleri</title>
+	<h:outputStylesheet library="css" name="form.css"/>
+</h:head> 
+<body> 
+<ui:insert>
+<ui:include src="/index.xhtml" />
+</ui:insert>
+<h:form id="form">
+<p:growl id="message" showDetail="true" life="2000"/>
+	<p:panel header="Kullanıcı Ekle">
+		<h:outputText value="Bölüm No : " />
+		<h:inputText value="" style="position:relative; left:21px;" required="true" requiredMessage="Lütfen Bölüm Numarasını Giriniz" /><br/><br/>
+		<h:outputText value="Ders No : "/>
+		<h:inputText value="" required="true" style="position:relative; left:5px;" requiredMessage="Lütfen Kullanıcı Numarasını Giriniz" /><br/><br/>
+		<h:outputText value="Ders Adı : " />
+		<h:inputText value="" required="true" requiredMessage="Lütfen Kullanıcı Adını Giriniz" /><br/><br/>
+		<h:outputText value="Şifre : " />
+		<h:inputText value="" style="position:relative; left:64px;" required="true" requiredMessage="Lütfen Bir Şifre Giriniz" /><br/><br/>
+		<p:commandButton value="Ekle" style="position:relative; left:210px;" icon="ui-icon-disk" 
+		 	update="message"/>
+	</p:panel>
+	<p:panel header="Ders Listesi">
+		<p:dataTable>
+		
+		
+		</p:dataTable>
+	</p:panel>
+</h:form>
+</body> 
+</html>

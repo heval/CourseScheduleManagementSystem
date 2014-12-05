@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+<navigation-rule>
+	<from-view-id>/login.xhtml</from-view-id>
+	<navigation-case>
+		<from-outcome>faculty</from-outcome>
+		<to-view-id>/faculty.xhtml</to-view-id>
+		<redirect />
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>section</from-outcome>
+		<to-view-id>/section.xhtml</to-view-id>
+		<redirect />
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>user</from-outcome>
+		<to-view-id>/user.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>index</from-outcome>
+		<to-view-id>/index.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-action>#{loginBean.logoutControl()}</from-action>
+		<from-outcome>login</from-outcome>
+		<to-view-id>/login.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+	<from-outcome>course</from-outcome>
+	<to-view-id>/course.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+</faces-config>

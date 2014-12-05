@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Login</title>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputStylesheet library="css" name="login.css"/>
+</h:head> 
+<body> 
+<div class="navbar">
+	<div class="logo">
+		<p>Cumhuriyet Üniversitesi</p>
+	</div>
+</div>
+<div class="loginheader">
+<p>Ders Sistemi Kimlik Doğrulama</p>
+</div>
+<div class="login">	
+	<div class="loginlogo"></div>
+		<h:form class="loginform">
+		<p:growl id="message" showDetail="true" life="2000"/>
+			E-Mail<h:inputText value="#{loginBean.user.userMail}" required="true" requiredMessage="Lütfen Mail Adresinizi Giriniz" /><br/>
+			Şifre      <h:inputSecret value="#{loginBean.user.password}" required="true" requiredMessage="Lütfen Şifrenizi Giriniz" />
+		
+		<div class="button">
+			<h:commandButton type="submit" value="Giriş" actionListener="#{loginBean.loginControl()}" action="#{loginBean.sending()}" update="message"/>
+		</div>
+	</h:form>
+</div>
+</body> 
+</html>

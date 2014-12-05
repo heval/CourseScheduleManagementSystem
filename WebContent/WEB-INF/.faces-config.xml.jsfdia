@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="faculty::#faculty.xhtml" NAME="output"
+    PATH="/faculty.xhtml" TARGET="rules:#faculty.xhtml" TITLE="faculty" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="section::#section.xhtml" NAME="output1"
+    PATH="/section.xhtml" TARGET="rules:#section.xhtml" TITLE="section" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="user::#user.xhtml" NAME="output2"
+    PATH="/user.xhtml" TARGET="rules:#user.xhtml" TITLE="user" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output3"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="login:#{loginBean.logoutControl()}:#login.xhtml" NAME="output4"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml"
+    TITLE="#{loginBean.logoutControl()}:login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="course::#course.xhtml" NAME="output5"
+    PATH="/course.xhtml" TARGET="rules:#course.xhtml" TITLE="course" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#faculty.xhtml" PATH="/faculty.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#user.xhtml" PATH="/user.xhtml"
+  SHAPE="304,417,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#course.xhtml" PATH="/course.xhtml"
+  SHAPE="304,641,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#section.xhtml" PATH="/section.xhtml"
+  SHAPE="304,305,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

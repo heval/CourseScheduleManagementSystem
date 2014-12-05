@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Bölüm İşlemleri</title>
+	<h:outputStylesheet library="css" name="form.css"/>
+</h:head> 
+<body>
+<ui:insert> 
+<ui:include src="/index.xhtml" />
+</ui:insert>
+<h:form id="form">
+<p:growl id="message" showDetail="true" life="2000" />
+	<p:panel header="Bölüm Ekle">
+		<h:outputText value="Fakülte No : "/>
+		<h:inputText value="#{sectionBean.section.facultyNo}" required="true" requiredMessage="Lütfen Fakülte Numarasını Giriniz" /><br/><br/>
+		<h:outputText value="Bölüm No : "  />
+		<h:inputText value="#{sectionBean.section.sectionNo}" style="position:relative; left:6px;" required="true" requiredMessage="Lütfen Bölüm Numarasını Giriniz" /><br/><br/>
+		<h:outputText value="Bölüm Adı : " /> 
+		<h:inputText value="#{sectionBean.section.sectionName}" style="position:relative; left:4px;" required="true" requiredMessage="Lütfen Bölüm Adını Giriniz"/><br/><br/>
+		<p:commandButton value="Ekle" style="position:relative; left:205px;" icon="ui-icon-disk" 
+		actionListener="#{sectionBean.setSectionData()}"  update="message :list:panel"/>
+	</p:panel> 
+</h:form>
+<h:form id="list">
+<p:panel id="panel" header="Bölüm Listesi">
+	<p:dataTable value="#{sectionBean.sectionDataList}" var="c" id="sections" paginator="true" rows="10">
+		<p:column width="100">
+			<f:facet name="header">
+				<h:outputText value="Fakülte No" />
+			</f:facet>
+				<h:outputText value="#{c.facultyNo}" rendered="#{not update.updatable}"/>
+				<h:inputText value="#{c.facultyNo}" rendered="#{update.updatable}" />
+		</p:column>
+		<p:column width="100">
+			<f:facet name="header">
+				<h:outputText value="Bölüm No" />
+			</f:facet>
+			<h:outputText value="#{c.sectionNo}" rendered="#{not update.updatable}" />
+			<h:inputText value="#{c.sectionNo}" rendered="#{update.updatable}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="Bölüm Adı" />
+			</f:facet>
+			<h:outputText value="#{c.sectionName}" rendered="#{not update.updatable}"/>
+			<h:inputText value="#{c.sectionName}" rendered="#{update.updatable}" />
+		</p:column>
+	</p:dataTable>
+	<p:contextMenu>
+     	<p:menuitem value="Save" actionListener="#{sectionBean.sectionUpdate()}" update=":list:panel" icon="ui-icon-disk"/>
+        <p:menuitem value="Update" actionListener="#{update.activeToUpdatable()}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
+        <p:menuitem value="Delete" icon="ui-icon-close"/>
+        <p:menuitem value="Homepage" url="index?faces-redirect=true" icon="ui-icon-extlink"/>
+     </p:contextMenu>  
+</p:panel>
+</h:form>
+</body> 
+</html>
