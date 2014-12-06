@@ -1,7 +1,7 @@
 input{ border-radius:3px; padding:2px; }
 .login{
 	position:relative;
-	top:250px;
+	top:175px;
 	margin:auto;
 	width:400px;
 	height:200px;
@@ -12,6 +12,7 @@ input{ border-radius:3px; padding:2px; }
 	border-bottom-right-radius:10px;
 }
 .loginlogo{
+	margin-top:25px;
 	float:left;
 	width: 97px;
 	height: 101px;
@@ -20,7 +21,7 @@ input{ border-radius:3px; padding:2px; }
 .loginheader{
 	margin:auto;
 	position:relative;
-	top:250px;
+	top:175px;
 	width:400px;
 	height: 30px;
 	background-color:#A81C21;
@@ -35,6 +36,7 @@ input{ border-radius:3px; padding:2px; }
 .loginheader p{ text-align: center; }
 .loginform{
 	margin-left:10px;
+	margin-top:25px;
 	width:290px;
 	height: 100px;
 	float:left;
@@ -59,7 +61,7 @@ input{ border-radius:3px; padding:2px; }
 .button input{
 	width:100px;
 	cursor:pointer;
-	margin-left:157px;
+	margin-left:145px;
 	padding:5px 25px;
 	border:none;
 	border-color:#CCCCCC;
