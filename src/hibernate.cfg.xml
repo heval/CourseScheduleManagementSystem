@@ -12,5 +12,6 @@
 	        <mapping class="org.managementsystem.model.faculty.Faculty"/>
 	        <mapping class="org.managementsystem.model.section.Section"/>
 	        <mapping class="org.managementsystem.model.user.User"/>
+	        <mapping class="org.managementsystem.model.course.Course"/>
     </session-factory>
 </hibernate-configuration>
