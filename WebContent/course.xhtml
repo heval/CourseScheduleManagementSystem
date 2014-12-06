@@ -9,30 +9,80 @@
 	<title>Ders İşlemleri</title>
 	<h:outputStylesheet library="css" name="form.css"/>
 </h:head> 
-<body> 
+<body>
 <ui:insert>
-<ui:include src="/index.xhtml" />
+	<ui:include src="/index.xhtml" />
 </ui:insert>
 <h:form id="form">
-<p:growl id="message" showDetail="true" life="2000"/>
-	<p:panel header="Kullanıcı Ekle">
-		<h:outputText value="Bölüm No : " />
-		<h:inputText value="" style="position:relative; left:21px;" required="true" requiredMessage="Lütfen Bölüm Numarasını Giriniz" /><br/><br/>
-		<h:outputText value="Ders No : "/>
-		<h:inputText value="" required="true" style="position:relative; left:5px;" requiredMessage="Lütfen Kullanıcı Numarasını Giriniz" /><br/><br/>
-		<h:outputText value="Ders Adı : " />
-		<h:inputText value="" required="true" requiredMessage="Lütfen Kullanıcı Adını Giriniz" /><br/><br/>
-		<h:outputText value="Şifre : " />
-		<h:inputText value="" style="position:relative; left:64px;" required="true" requiredMessage="Lütfen Bir Şifre Giriniz" /><br/><br/>
-		<p:commandButton value="Ekle" style="position:relative; left:210px;" icon="ui-icon-disk" 
-		 	update="message"/>
-	</p:panel>
-	<p:panel header="Ders Listesi">
-		<p:dataTable>
-		
-		
-		</p:dataTable>
-	</p:panel>
+ <p:growl id="message" showDetail="true" life="2000"/> 
+ 	<p:panel header="Ders Ekle">    
+ 		<h:outputText value="Bölüm No  : " />    
+ 		<h:inputText value="#{courseBean.course.sectionNo}" required="true" requiredMessage="Lütfen Bölüm Numarasını Giriniz"/><br/><br/>    
+  		<h:outputText value="Ders No : " />  
+  		<h:inputText value="#{courseBean.course.courseNo}" style="margin-left:11px;"  required="true" requiredMessage="Lütfen Ders Numarasını Giriniz"/><br/><br/>
+  		<h:outputText value="Ders Adı : " />  
+  		<h:inputText value="#{courseBean.course.courseName}" style="margin-left:10px;" required="true" requiredMessage="Lütfen Ders Adını Giriniz"/><br/><br/>
+   		<p:commandButton value="Ekle" style="position:relative; left:220px;" icon="ui-icon-disk" update="message :list:panel"/>
+    </p:panel> 
+</h:form>
+<h:form id="list">
+<p:panel id="panel" header="Ders Listesi">   
+	 <p:dataTable id="courses" value="#{courseBean.courseDataList}" var="c" paginator="true" rows="10">
+	 <p:column width="20">
+		<p:selectBooleanCheckbox/>
+	 </p:column>
+	 <p:column width="100">     
+		 <f:facet name="header">
+ 			<h:outputText value="Bölüm No" />     
+ 		 </f:facet> 		     
+ 		<h:outputText value="#{c.sectionNo}" rendered="#{not update.updatable}"/>
+ 		<h:inputText value="#{c.sectionNo}" style="width:100px;" rendered="#{update.updatable}"/>    
+ 	 </p:column>
+ 	 <p:column width="100">     
+		 <f:facet name="header">
+ 			<h:outputText value="Ders No" />     
+ 		 </f:facet> 		     
+ 		<h:outputText value="#{c.courseNo}" rendered="#{not update.updatable}"/>
+ 		<h:inputText value="#{c.courseNo}" style="width:100px;" rendered="#{update.updatable}"/>    
+ 	 </p:column>        
+	 <p:column>     
+ 		<f:facet name="header">    
+   			<h:outputText value="Ders Adı" />  
+      	</f:facet>   
+      	<h:outputText value="#{c.courseName}" rendered="#{not update.updatable}"/>
+      	<h:inputText value="#{c.courseName}" rendered="#{update.updatable}"/>    
+     </p:column> 
+     </p:dataTable>
+     <p:contextMenu>
+     	<p:menuitem value="Save" actionListener="#{courseBean.courseUpdate()}" update=":list:panel" icon="ui-icon-disk"/>
+        <p:menuitem value="Update" actionListener="#{update.activeToUpdatable()}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
+        <p:menuitem value="Delete" icon="ui-icon-close"/>
+        <p:menuitem value="Homepage" url="index.jsf" icon="ui-icon-extlink"/>
+     </p:contextMenu>  
+</p:panel> 
 </h:form>
 </body> 
 </html>
+<!-- 
+		<p:dataTable var="c" paginator="true" rows="10">
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Bölüm No" />
+				</f:facet>
+					<h:outputText/>
+ 					<h:inputText/>    
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Ders No" />
+				</f:facet>
+					<h:outputText/>
+ 					<h:inputText/>    
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputLabel value="Ders Adı" />
+				</f:facet>
+					<h:outputText/>
+ 					<h:inputText/>    
+			</p:column> -->
