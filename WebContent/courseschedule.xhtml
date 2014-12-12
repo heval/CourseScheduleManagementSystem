@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Ders Programı</title>
+	<h:outputStylesheet library="css" name="form.css"/>
+</h:head> 
+<body> 
+<ui:insert>
+	<ui:include src="/index.xhtml" />
+</ui:insert>
+<script type="text/javascript">
+    function handleDrop(event, ui) {
+        var droppedCourse = ui.draggable;
+ 
+        droppedCourse.fadeOut('fast');
+    }
+</script>
+ 
+<h:form id="dragdrop">
+    <p:fieldset id="courses" legend="Dersler">
+        <p:dataTable id="courseStable" var="c" value="#{dragDrop.courseDataList}">
+            <p:column style="width:20px">
+                <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+                <p:draggable for="dragIcon" revert="true" helper="clone"/>
+            </p:column>
+ 
+            <p:column headerText="Bölüm No">
+                <h:outputText value="#{c.sectionNo}"/>
+            </p:column>
+ 
+            <p:column headerText="Ders No">
+                <h:outputText value="#{c.courseNo}"/>
+            </p:column>
+ 
+            <p:column headerText="Ders Adı">
+                <h:outputText value="#{c.courseName}" />
+            </p:column>
+        </p:dataTable>
+    </p:fieldset>
+ 
+    <p:fieldset id="courseSchedule" legend="Ders Programı" style="margin-top:20px">
+        <p:outputPanel id="dropArea">
+            <h:outputText value="Sürükle Bırak"  style="font-size:24px;" rendered="#{empty dragDrop.courseScheduleDataList}"/>
+            <p:dataTable id="selectedCarsTable" var="c" value="#{dragDrop.courseScheduleDataList}" rendered="#{not empty dragDrop.courseScheduleDataList}">
+                <p:column headerText="Ders No">
+                    <h:outputText value="#{c.sectionNo}"/>
+                </p:column>
+ 
+                <p:column headerText="Ders Adı">
+                    <h:outputText value="#{c.courseNo}"/>
+                </p:column>
+ 
+                <p:column headerText="Öğretmen">
+                    <h:outputText value="#{c.courseName}"/>
+                </p:column>
+
+            </p:dataTable>
+        </p:outputPanel>
+    </p:fieldset>
+ 
+    <p:droppable for="courseSchedule" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="courseStable" onDrop="handleDrop">
+		 <p:ajax listener="#{dragDrop.onCourseDrop}" update="dropArea courseStable" />
+    </p:droppable>
+</h:form>
+</body> 
+</html>
