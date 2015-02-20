@@ -7,6 +7,9 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Login</title>
+	<f:metadata>
+		<f:event type="javax.faces.event.PreRenderViewEvent" listener="#{loginBean.authorizedUserControl}"/>
+	</f:metadata>
 	<h:outputStylesheet library="css" name="style.css"/>
 	<h:outputStylesheet library="css" name="login.css"/>
 </h:head> 
@@ -26,7 +29,7 @@
 			E-Mail : <h:inputText value="#{loginBean.user.userMail}" required="true" requiredMessage="Lütfen Mail Adresinizi Giriniz" /><br/>
 			Şifre :  <h:inputSecret value="#{loginBean.user.password}" required="true" requiredMessage="Lütfen Şifrenizi Giriniz" style="position:relative; left:15px;" />
 	<div class="button">
-		<h:commandButton styleClass="button" type="submit" value="Giriş" actionListener="#{loginBean.loginControl()}" action="#{loginBean.sending()}" update="message"/>
+		<h:commandButton styleClass="button" type="submit" value="Giriş" actionListener="#{loginBean.loginControl()}" update="message"/>
 	</div>
 	</h:form>
 </div>
