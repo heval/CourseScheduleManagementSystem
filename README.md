@@ -1,8 +1,8 @@
-CourseScheduleManagementSystem(Learning Project)
+Learning Project
 ==============================
 Technologies Used;
--JSF
--Primefaces
--Hibernate
--Apache Shiro
--Mysql
+* JSF
+* Primefaces
+* Hibernate
+* Apache Shiro
+* Mysql
