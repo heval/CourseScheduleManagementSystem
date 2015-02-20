@@ -27,7 +27,8 @@
 </h:form>
 <h:form id="list">
 <p:panel id="panel" header="Ders Listesi">   
-	 <p:dataTable id="courses" value="#{courseBean.courseDataList}" var="c" sortBy="#{c.sectionNo}" paginator="true" rows="10">
+	 <p:dataTable id="courses" value="#{courseBean.courseDataList}" selectionMode="single"
+				 selection="#{courseBean.course}" rowKey="#{c.courseNo}" var="c" sortBy="#{c.sectionNo}" paginator="true" rows="10">
 	 <p:column width="20">
 		<p:selectBooleanCheckbox/>
 	 </p:column>
@@ -54,35 +55,12 @@
      </p:column> 
      </p:dataTable>
      <p:contextMenu>
-     	<p:menuitem value="Save" actionListener="#{courseBean.courseUpdate()}" update=":list:panel" icon="ui-icon-disk"/>
+     	<p:menuitem value="Save" actionListener="#{courseBean.courseUpdate}" update=":list:panel" icon="ui-icon-disk"/>
         <p:menuitem value="Update" actionListener="#{update.activeToUpdatable()}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
-        <p:menuitem value="Delete" icon="ui-icon-close"/>
+        <p:menuitem value="Delete" actionListener="#{courseBean.courseDelete}" icon="ui-icon-close"/>
         <p:menuitem value="Homepage" url="index.jsf" icon="ui-icon-extlink"/>
      </p:contextMenu>  
 </p:panel> 
 </h:form>
 </body> 
 </html>
-<!-- 
-		<p:dataTable var="c" paginator="true" rows="10">
-			<p:column>
-				<f:facet name="header">
-					<h:outputLabel value="Bölüm No" />
-				</f:facet>
-					<h:outputText/>
- 					<h:inputText/>    
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputLabel value="Ders No" />
-				</f:facet>
-					<h:outputText/>
- 					<h:inputText/>    
-			</p:column>
-			<p:column>
-				<f:facet name="header">
-					<h:outputLabel value="Ders Adı" />
-				</f:facet>
-					<h:outputText/>
- 					<h:inputText/>    
-			</p:column> -->

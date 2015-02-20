@@ -28,7 +28,8 @@
 </h:form>
 <h:form id="list">
 <p:panel id="panel" header="Bölüm Listesi">
-	<p:dataTable value="#{sectionBean.sectionDataList}" var="c" id="sections" sortBy="#{c.facultyNo}" paginator="true" rows="10">
+	<p:dataTable value="#{sectionBean.sectionDataList}" var="c" id="sections" selectionMode="single"
+				 selection="#{sectionBean.section}" rowKey="#{c.sectionNo}" sortBy="#{c.facultyNo}" paginator="true" rows="10">
 		<p:column width="100">
 			<f:facet name="header">
 				<h:outputText value="Fakülte No" />
@@ -52,9 +53,9 @@
 		</p:column>
 	</p:dataTable>
 	<p:contextMenu>
-     	<p:menuitem value="Save" actionListener="#{sectionBean.sectionUpdate()}" update=":list:panel" icon="ui-icon-disk"/>
-        <p:menuitem value="Update" actionListener="#{update.activeToUpdatable()}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
-        <p:menuitem value="Delete" icon="ui-icon-close"/>
+     	<p:menuitem value="Save" actionListener="#{sectionBean.sectionUpdate}" update=":list:panel" icon="ui-icon-disk"/>
+        <p:menuitem value="Update" actionListener="#{update.activeToUpdatable}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
+        <p:menuitem value="Delete" actionListener="#{sectionBean.sectionDelete}" icon="ui-icon-close"/>
         <p:menuitem value="Homepage" url="index?faces-redirect=true" icon="ui-icon-extlink"/>
      </p:contextMenu>  
 </p:panel>

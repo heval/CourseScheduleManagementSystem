@@ -30,7 +30,8 @@
 </h:form>
 <h:form id="list">
 	<p:panel id="panel" header="Kullanıcı Listesi">
-	<p:dataTable value="#{userBean.userDataList}" var="c" id="users" sortBy="#{c.sectionNo}" paginator="true" rows="10">
+	<p:dataTable value="#{userBean.userDataList}" var="c" id="users" selectionMode="single"
+				 selection="#{userBean.user}" rowKey="#{c.userNo}" sortBy="#{c.sectionNo}" paginator="true" rows="10">
 		<p:column width="100">
 			<f:facet name="header">
 				<h:outputText value="Bölüm No" />
@@ -61,9 +62,9 @@
 		</p:column>
 	</p:dataTable>
 	<p:contextMenu>
-     	<p:menuitem value="Save" actionListener="#{facultyBean.facultyUpdate()}" update=":list:panel" icon="ui-icon-disk"/>
+     	<p:menuitem value="Save" actionListener="#{userBean.userUpdate}" update=":list:panel" icon="ui-icon-disk"/>
         <p:menuitem value="Update" actionListener="#{update.activeToUpdatable()}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
-        <p:menuitem value="Delete" icon="ui-icon-close"/>
+        <p:menuitem value="Delete" actionListener="#{userBean.userDelete}" icon="ui-icon-close"/>
         <p:menuitem value="Homepage" url="index?faces-redirect=true" icon="ui-icon-extlink"/>
      </p:contextMenu>  
 </p:panel>
