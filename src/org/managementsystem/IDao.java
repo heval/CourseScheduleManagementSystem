@@ -8,4 +8,6 @@ public interface IDao<T> {
 	public void setData(T t);
 
 	public void updateData(T t);
+
+	public void deleteData(T t);
 }

@@ -1,16 +1,15 @@
 package org.managementsystem.model.course;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.managementsystem.IDao;
 import org.managementsystem.model.HibernateUtil;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import java.util.Collections;
+import java.util.List;
 
 public class CourseDAOImpl implements IDao<Course> {
 	Session session = null;
@@ -29,7 +28,7 @@ public class CourseDAOImpl implements IDao<Course> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Databasedeki Verilere Eriþilemiyor"));
+							"Databasedeki Verilere Eriï¿½ilemiyor"));
 			return null;
 		} finally {
 			session.close();
@@ -50,7 +49,7 @@ public class CourseDAOImpl implements IDao<Course> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Veri Eklenirken Bir Sorun Oluþtu"));
+							"Veri Eklenirken Bir Sorun Oluï¿½tu"));
 			session.getTransaction().commit();
 		} finally {
 			session.close();
@@ -60,6 +59,12 @@ public class CourseDAOImpl implements IDao<Course> {
 
 	@Override
 	public void updateData(Course t) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteData(Course t) {
 		// TODO Auto-generated method stub
 
 	}

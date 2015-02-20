@@ -1,16 +1,15 @@
 package org.managementsystem.model.section;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.managementsystem.IDao;
 import org.managementsystem.model.HibernateUtil;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import java.util.Collections;
+import java.util.List;
 
 public class SectionDAOImpl implements IDao<Section> {
 	Session session = null;
@@ -29,7 +28,7 @@ public class SectionDAOImpl implements IDao<Section> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Databasedeki Verilere Eriþilemiyor"));
+							"Databasedeki Verilere Eriï¿½ilemiyor"));
 			return null;
 		} finally {
 			session.close();
@@ -50,7 +49,7 @@ public class SectionDAOImpl implements IDao<Section> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Veri Eklenirken Bir Sorun Oluþtu"));
+							"Veri Eklenirken Bir Sorun Oluï¿½tu"));
 			session.getTransaction().rollback();
 		} finally {
 			session.close();
@@ -59,6 +58,12 @@ public class SectionDAOImpl implements IDao<Section> {
 
 	@Override
 	public void updateData(Section t) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteData(Section t) {
 		// TODO Auto-generated method stub
 
 	}

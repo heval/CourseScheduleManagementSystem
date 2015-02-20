@@ -26,31 +26,28 @@
 </h:form>
 <h:form id="list">
 <p:panel id="panel" header="Fakülte Listesi">   
-	 <p:dataTable id="faculties" value="#{facultyBean.facultyDataList}" sortBy="#{c.facultyNo}" var="c" paginator="true" rows="10">
-	 <p:column width="20">
-		<p:selectBooleanCheckbox/>
-	 </p:column>
+	 <p:dataTable id="faculties" value="#{facultyBean.facultyDataList}" selectionMode="single" selection="#{facultyBean.faculty}" rowKey="#{c.facultyNo}" sortBy="#{c.facultyNo}" var="c" paginator="true" rows="10">
 	 <p:column width="100">     
 		 <f:facet name="header">
  			<h:outputText value="Fakülte No" />     
  		 </f:facet> 		     
  		<h:outputText value="#{c.facultyNo}" rendered="#{not update.updatable}"/>
- 		<h:inputText value="#{c.facultyNo}" rendered="#{update.updatable}" style="width:100px;"/>    
+ 		<h:inputText value="#{c.facultyNo}" rendered="#{update.updatable and facultyBean.faculty.facultyNo eq c.facultyNo}" style="width:100px;"/>    
  	 </p:column>    
-	 <p:column>     
+	 <p:column>      
  		<f:facet name="header">    
    			<h:outputText value="Fakülte Adı" />  
       	</f:facet>   
-      	<h:outputText value="#{c.facultyName}" rendered="#{not update.updatable}"/>
-      	<h:inputText value="#{c.facultyName}" rendered="#{update.updatable}"/>    
+      	<h:outputText value="#{c.facultyName}" rendered="#{not update.updatable or facultyBean.faculty.facultyNo eq c.facultyNo}"/>
+      	<h:inputText value="#{c.facultyName}" rendered="#{update.updatable and facultyBean.faculty.facultyNo eq c.facultyNo}"/>    
      </p:column> 
      </p:dataTable>
      <p:contextMenu>
      	<p:menuitem value="Save" actionListener="#{facultyBean.facultyUpdate()}" update=":list:panel" icon="ui-icon-disk"/>
         <p:menuitem value="Update" actionListener="#{update.activeToUpdatable()}" update=":list:panel" icon="ui-icon-arrowrefresh-1-w"/>
-        <p:menuitem value="Delete" icon="ui-icon-close"/>
+        <p:menuitem value="Delete" actionListener="#{facultyBean.facultyDelete()}" update=":list:panel" icon="ui-icon-close"/>
         <p:menuitem value="Homepage" url="index.jsf" icon="ui-icon-extlink"/>
-     </p:contextMenu>  
+     </p:contextMenu>
 </p:panel> 
 </h:form>
 </body> 

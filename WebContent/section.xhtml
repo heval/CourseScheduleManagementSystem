@@ -28,7 +28,7 @@
 </h:form>
 <h:form id="list">
 <p:panel id="panel" header="Bölüm Listesi">
-	<p:dataTable value="#{sectionBean.sectionDataList}" var="c" id="sections" paginator="true" rows="10">
+	<p:dataTable value="#{sectionBean.sectionDataList}" var="c" id="sections" sortBy="#{c.facultyNo}" paginator="true" rows="10">
 		<p:column width="100">
 			<f:facet name="header">
 				<h:outputText value="Fakülte No" />

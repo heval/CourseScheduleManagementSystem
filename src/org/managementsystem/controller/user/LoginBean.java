@@ -1,25 +1,26 @@
 package org.managementsystem.controller.user;
 
-import java.util.List;
+import org.managementsystem.model.user.User;
+import org.managementsystem.model.user.UserDAOImpl;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.List;
 
-import org.managementsystem.model.user.User;
-import org.managementsystem.model.user.UserDAOImpl;
 
 @ManagedBean
 public class LoginBean {
 	UserController controller = new UserController(new UserDAOImpl());
 	List<User> userInfoList = controller.getUserDataList();
 	private User user = new User();
-
 	public User getUser() {
 		return user;
 	}
 
-	public void loginControl() {
+	public void loginControl() throws ServletException, IOException {
 		String userName = getUser().getUserMail();
 		String userPassword = getUser().getPassword();
 		for (int i = 0; i < userInfoList.size(); i++) {
@@ -33,7 +34,6 @@ public class LoginBean {
 			}
 		}
 	}
-
 	public String logoutControl() {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();

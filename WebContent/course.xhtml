@@ -27,7 +27,7 @@
 </h:form>
 <h:form id="list">
 <p:panel id="panel" header="Ders Listesi">   
-	 <p:dataTable id="courses" value="#{courseBean.courseDataList}" var="c" paginator="true" rows="10">
+	 <p:dataTable id="courses" value="#{courseBean.courseDataList}" var="c" sortBy="#{c.sectionNo}" paginator="true" rows="10">
 	 <p:column width="20">
 		<p:selectBooleanCheckbox/>
 	 </p:column>

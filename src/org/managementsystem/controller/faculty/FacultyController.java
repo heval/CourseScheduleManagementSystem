@@ -1,9 +1,9 @@
 package org.managementsystem.controller.faculty;
 
-import java.util.List;
-
 import org.managementsystem.IDao;
 import org.managementsystem.model.faculty.Faculty;
+
+import java.util.List;
 
 public class FacultyController {
 	private IDao<Faculty> dao;
@@ -30,5 +30,9 @@ public class FacultyController {
 
 	public void facultyUpdate(Faculty faculty) {
 		dao.updateData(faculty);
+	}
+
+	public void facultyDelete(Faculty faculty) {
+		dao.deleteData(faculty);
 	}
 }

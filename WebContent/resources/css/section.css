@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-
+input{ border-radius:3px; padding:2px; }
 #sectionAddForm{
 	position:relative;
 	top:125px;
@@ -16,4 +16,3 @@
 	height: auto;
 	float:left;
 }
-input{ border-radius:3px; padding:2px; }

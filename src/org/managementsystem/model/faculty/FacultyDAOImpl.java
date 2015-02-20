@@ -1,16 +1,15 @@
 package org.managementsystem.model.faculty;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.managementsystem.IDao;
 import org.managementsystem.model.HibernateUtil;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import java.util.Collections;
+import java.util.List;
 
 public class FacultyDAOImpl implements IDao<Faculty> {
 	Session session = null;
@@ -29,7 +28,7 @@ public class FacultyDAOImpl implements IDao<Faculty> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Databasedeki Verilere Eri�ilemiyor"));
+							"Databasedeki Verilere Erişilemiyor"));
 			return null;
 		} finally {
 			session.close();
@@ -49,7 +48,7 @@ public class FacultyDAOImpl implements IDao<Faculty> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Veri Eklenirken Bir Sorun Olu�tu"));
+							"Veri Eklenirken Bir Sorun Oluştu"));
 			session.getTransaction().rollback();
 		} finally {
 			session.close();
@@ -58,6 +57,40 @@ public class FacultyDAOImpl implements IDao<Faculty> {
 
 	@Override
 	public void updateData(Faculty t) {
+		Faculty faculty = new Faculty(t.getFacultyNo(), t.getFacultyName());
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(faculty);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri Güncellenirken Bir Sorun Oluştu"));
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+	}
 
+	@Override
+	public void deleteData(Faculty t) {
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.delete(t);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri G�ncellenirken Bir Sorun Olu�tu"));
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
 	}
 }

@@ -21,6 +21,10 @@ public class FacultyBean {
 		return faculty;
 	}
 
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
 	public List<Faculty> getFacultyDataList() {
 		return facultyDataList;
 	}
@@ -35,4 +39,9 @@ public class FacultyBean {
 		Updatable.setUpdatable(false);
 		controller.facultyUpdate(faculty);
 	}
+
+	public void facultyDelete() {
+		controller.facultyDelete(faculty);
+	}
+
 }
