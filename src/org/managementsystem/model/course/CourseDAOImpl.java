@@ -59,14 +59,42 @@ public class CourseDAOImpl implements IDao<Course> {
 
 	@Override
 	public void updateData(Course t) {
-		// TODO Auto-generated method stub
+		Course course=new Course(t.getSectionNo(),t.getCourseNo(),t.getCourseName());
+		try{
+			session= HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(course);
+			session.getTransaction().commit();
+		}catch (HibernateException e){
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri Güncellenirken Bir Sorun Oluştu"));
+			session.getTransaction().rollback();
+		}finally {
+			session.close();
+		}
 
 	}
 
 	@Override
 	public void deleteData(Course t) {
-		// TODO Auto-generated method stub
-
+		try{
+			session= HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.delete(t);
+			session.getTransaction().commit();
+		}catch (HibernateException e){
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri Silinirken Bir Sorun Oluştu"));
+			session.getTransaction().rollback();
+		}finally {
+			session.close();
+		}
 	}
 
 }

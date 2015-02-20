@@ -58,14 +58,42 @@ public class UserDAOImpl implements IDao<User> {
 
 	@Override
 	public void updateData(User t) {
-		// TODO Auto-generated method stub
+		User user=new User(t.getSectionNo(),t.getUserNo(),t.getUserMail(),t.getPassword());
+		try{
+			session= HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(user);
+			session.getTransaction().commit();
+		}catch (HibernateException e){
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri Güncellenirken Bir Sorun Oluştu"));
+			session.getTransaction().rollback();
+		}finally {
+			session.close();
+		}
 
 	}
 
 	@Override
 	public void deleteData(User t) {
-		// TODO Auto-generated method stub
+		try{
+			session=HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.delete(t);
+			session.getTransaction().commit();
+		}catch (HibernateException e){
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri Silinirken Bir Sorun Oluştu"));
+			session.getTransaction().rollback();
+		}finally {
 
+		}
 	}
 
 }

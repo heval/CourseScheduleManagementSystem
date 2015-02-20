@@ -58,14 +58,40 @@ public class SectionDAOImpl implements IDao<Section> {
 
 	@Override
 	public void updateData(Section t) {
-		// TODO Auto-generated method stub
-
+		Section section=new Section(t.getFacultyNo(),t.getSectionNo(),t.getSectionName());
+		try{
+			session=HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(section);
+			session.getTransaction().commit();
+		}catch (HibernateException e){
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri Güncellenirken Bir Sorun Oluştu"));
+			session.getTransaction().rollback();
+		}finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void deleteData(Section t) {
-		// TODO Auto-generated method stub
-
+		try{
+			session=HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.delete(t);
+			session.getTransaction().commit();
+		}catch (HibernateException e){
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Database Error",
+							"Veri Silinirken Bir Sorun Oluştu"));
+			session.getTransaction().rollback();
+		}finally {
+			session.close();
+		}
 	}
-
 }
