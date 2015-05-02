@@ -3,8 +3,9 @@ package org.managementsystem.dao.course;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.managementsystem.IDao;
-import org.managementsystem.model.HibernateUtil;
+import org.managementsystem.dao.IDao;
+import org.managementsystem.HibernateUtil;
+import org.managementsystem.model.course.Course;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -28,7 +29,7 @@ public class CourseDAOImpl implements IDao<Course> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Databasedeki Verilere Eri�ilemiyor"));
+							"Databasedeki Verilere Erişilemiyor"));
 			return null;
 		} finally {
 			session.close();
@@ -49,7 +50,7 @@ public class CourseDAOImpl implements IDao<Course> {
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
-							"Veri Eklenirken Bir Sorun Olu�tu"));
+							"Veri Eklenirken Bir Sorun Oluştu"));
 			session.getTransaction().commit();
 		} finally {
 			session.close();

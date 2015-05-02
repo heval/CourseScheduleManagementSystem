@@ -1,6 +1,6 @@
 package org.managementsystem.controller.faculty;
 
-import org.managementsystem.IDao;
+import org.managementsystem.dao.IDao;
 import org.managementsystem.model.faculty.Faculty;
 
 import java.util.List;

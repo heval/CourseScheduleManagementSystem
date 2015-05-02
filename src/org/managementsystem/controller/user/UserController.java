@@ -1,9 +1,9 @@
 package org.managementsystem.controller.user;
 
-import java.util.List;
-
-import org.managementsystem.IDao;
+import org.managementsystem.dao.IDao;
 import org.managementsystem.model.user.User;
+
+import java.util.List;
 
 public class UserController {
 	private IDao<User> dao;
@@ -32,4 +32,7 @@ public class UserController {
 		dao.updateData(user);
 	}
 
+	public void userDelete(User user){
+		dao.deleteData(user);
+	}
 }

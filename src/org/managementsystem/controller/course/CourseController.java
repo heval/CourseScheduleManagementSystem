@@ -1,9 +1,9 @@
 package org.managementsystem.controller.course;
 
-import java.util.List;
-
-import org.managementsystem.IDao;
+import org.managementsystem.dao.IDao;
 import org.managementsystem.model.course.Course;
+
+import java.util.List;
 
 public class CourseController {
 	private IDao<Course> dao;
@@ -30,5 +30,9 @@ public class CourseController {
 
 	public void courseUpdate(Course course) {
 		dao.updateData(course);
+	}
+
+	public void courseDelete(Course course){
+		dao.deleteData(course);
 	}
 }

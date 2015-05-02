@@ -1,8 +1,6 @@
 package org.managementsystem.model.course;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Course {
@@ -31,6 +29,7 @@ public class Course {
 
 	@Id
 	@Column(name = "course_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getCourseNo() {
 		return courseNo;
 	}

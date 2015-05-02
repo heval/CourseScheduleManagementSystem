@@ -1,9 +1,14 @@
 package org.managementsystem.controller.user;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.managementsystem.model.user.User;
 import org.managementsystem.model.user.UserDAOImpl;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
@@ -19,39 +24,27 @@ public class LoginBean {
 	public User getUser() {
 		return user;
 	}
-
+	
 	public void loginControl() throws ServletException, IOException {
 		String userName = getUser().getUserMail();
 		String userPassword = getUser().getPassword();
-		for (int i = 0; i < userInfoList.size(); i++) {
-			user = userInfoList.get(i);
-			if (user.getUserMail().equals(userName)
-					&& user.getPassword().equals(userPassword)) {
-				FacesContext.getCurrentInstance().getExternalContext()
-						.getSessionMap().put("user", userName);
-				sending();
-				break;
-			}
-		}
-	}
-	public String logoutControl() {
-		FacesContext.getCurrentInstance().getExternalContext()
-				.invalidateSession();
-		return "login.jsf";
-	}
-
-	public String sending() {
-		if (FacesContext.getCurrentInstance().getExternalContext()
-				.getSessionMap().get("user") != null) {
-			return "index?faces-redirect=true";
-		} else {
+		try{
+            Subject currentUser= SecurityUtils.getSubject();
+            UsernamePasswordToken token=new UsernamePasswordToken(userName,userPassword);
+            currentUser.login(token);
+		}catch (AuthenticationException e){
 			FacesContext.getCurrentInstance()
 					.addMessage(
 							null,
 							new FacesMessage(FacesMessage.SEVERITY_ERROR,
 									"Could not login",
 									"Mail Adresi veya Şifre Hatalı"));
-			return "";
+		}
+	}
+	public void authorizedUserControl(){
+		if(SecurityUtils.getSubject().getPrincipal()!=null){
+			NavigationHandler handler=FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.handleNavigation(FacesContext.getCurrentInstance(), null, "/index.xhtml?faces-redirect=true");
 		}
 	}
 }

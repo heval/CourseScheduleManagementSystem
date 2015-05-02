@@ -1,13 +1,12 @@
 package org.managementsystem.controller.user;
 
-import java.util.List;
+import org.managementsystem.controller.Updatable;
+import org.managementsystem.model.user.User;
+import org.managementsystem.model.user.UserDAOImpl;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
-import org.managementsystem.controller.Updatable;
-import org.managementsystem.model.user.UserDAOImpl;
-import org.managementsystem.model.user.User;
+import java.util.List;
 
 @ManagedBean
 @ViewScoped
@@ -18,6 +17,10 @@ public class UserBean {
 
 	public User getUser() {
 		return user;
+	}
+
+	public void setUser(User user){
+		this.user=user;
 	}
 
 	public List<User> getUserDataList() {
@@ -33,5 +36,8 @@ public class UserBean {
 	public void userUpdate() {
 		Updatable.setUpdatable(false);
 		controller.userUpdate(user);
+	}
+	public void userDelete(){
+		controller.userDelete(user);
 	}
 }

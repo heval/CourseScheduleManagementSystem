@@ -1,4 +1,4 @@
-package org.managementsystem.model;
+package org.managementsystem;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;

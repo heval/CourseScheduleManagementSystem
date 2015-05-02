@@ -1,28 +1,28 @@
-package org.managementsystem.dao.course;
+package org.managementsystem.dao.section;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.managementsystem.IDao;
-import org.managementsystem.model.HibernateUtil;
+import org.managementsystem.dao.IDao;
+import org.managementsystem.HibernateUtil;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.util.Collections;
 import java.util.List;
 
-public class CourseDAOImpl implements IDao<Course> {
+public class SectionDAOImpl implements IDao<Section> {
 	Session session = null;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Course> getDataList() {
+	public List<Section> getDataList() {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			Criteria criteria = session.createCriteria(Course.class);
-			List<Course> courseDataList = Collections.checkedList(
-					criteria.list(), Course.class);
-			return courseDataList;
+			Criteria criteria = session.createCriteria(Section.class);
+			List<Section> sectionDataList = Collections.checkedList(
+					criteria.list(), Section.class);
+			return sectionDataList;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -36,13 +36,13 @@ public class CourseDAOImpl implements IDao<Course> {
 	}
 
 	@Override
-	public void setData(Course t) {
-		Course course = new Course(t.getSectionNo(), t.getCourseNo(),
-				t.getCourseName());
+	public void setData(Section t) {
+		Section section = new Section(t.getFacultyNo(), t.getSectionNo(),
+				t.getSectionName());
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.save(course);
+			session.save(section);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(
@@ -50,20 +50,19 @@ public class CourseDAOImpl implements IDao<Course> {
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Database Error",
 							"Veri Eklenirken Bir Sorun Olu�tu"));
-			session.getTransaction().commit();
+			session.getTransaction().rollback();
 		} finally {
 			session.close();
 		}
-
 	}
 
 	@Override
-	public void updateData(Course t) {
-		Course course=new Course(t.getSectionNo(),t.getCourseNo(),t.getCourseName());
+	public void updateData(Section t) {
+		Section section=new Section(t.getFacultyNo(),t.getSectionNo(),t.getSectionName());
 		try{
-			session= HibernateUtil.getSessionFactory().openSession();
+			session=HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(course);
+			session.update(section);
 			session.getTransaction().commit();
 		}catch (HibernateException e){
 			FacesContext.getCurrentInstance().addMessage(
@@ -75,13 +74,12 @@ public class CourseDAOImpl implements IDao<Course> {
 		}finally {
 			session.close();
 		}
-
 	}
 
 	@Override
-	public void deleteData(Course t) {
+	public void deleteData(Section t) {
 		try{
-			session= HibernateUtil.getSessionFactory().openSession();
+			session=HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.delete(t);
 			session.getTransaction().commit();
@@ -96,5 +94,4 @@ public class CourseDAOImpl implements IDao<Course> {
 			session.close();
 		}
 	}
-
 }

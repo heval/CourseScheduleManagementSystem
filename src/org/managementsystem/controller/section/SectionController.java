@@ -1,9 +1,9 @@
 package org.managementsystem.controller.section;
 
-import java.util.List;
-
-import org.managementsystem.IDao;
+import org.managementsystem.dao.IDao;
 import org.managementsystem.model.section.Section;
+
+import java.util.List;
 
 public class SectionController {
 	private IDao<Section> dao;
@@ -32,4 +32,7 @@ public class SectionController {
 		dao.updateData(section);
 	}
 
+	public void sectionDelete(Section section) {
+		dao.deleteData(section);
+	}
 }
