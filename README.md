@@ -1,4 +1,4 @@
-Learning Project
+Course Schedule Management System
 ==============================
 Technologies Used;
 * JSF
